@@ -37,11 +37,11 @@ public class Solution
 		//mirror(root);
 		//root.print(0);
 		//System.out.println(isBST(root));
-		List<TreeNode> out = dfsIterative(root);
+		List<TreeNode> out = printSpiral(root);//dfsIterative(root);
 		for(TreeNode t : out)
 			System.out.print(t.data + " ");
 		System.out.println();
-		dfs(root);
+		//dfs(root);
 		System.out.println();
 	}
 	public static void mirror(TreeNode root)
@@ -116,6 +116,46 @@ public class Solution
 			dfs(root.left);
 		if(root.right != null)
 			dfs(root.right);
+	}
+	public static List<TreeNode> printSpiral(TreeNode root)
+	{
+		if(root	== null)
+			return new ArrayList<TreeNode>();
+		Queue<TreeNode> q = new LinkedList<TreeNode>();
+		List<TreeNode> out = new ArrayList<TreeNode>();
+		q.offer(root);
+		boolean switchOrder = true;
+		while(!q.isEmpty())
+		{
+			int qSize = q.size();
+			Stack<TreeNode> stk = new Stack<TreeNode>();
+			for(int ii = 0; ii <qSize; ii++)
+			{
+				TreeNode temp = q.poll();
+				if(!switchOrder)
+					out.add(temp);
+				else
+				{
+					stk.push(temp);
+				}
+				if(temp.left != null)
+					q.offer(temp.left);
+				if(temp.right != null)
+					q.offer(temp.right);
+
+			}
+			if(switchOrder)
+			{
+				for(int ii =0; ii <qSize; ii++)
+				{
+					out.add(stk.pop());
+				}
+
+			}
+			switchOrder = !switchOrder;
+
+		}
+		return out;
 	}
 
 }
