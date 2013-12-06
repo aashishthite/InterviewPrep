@@ -1,0 +1,68 @@
+class LNode{
+	public LNode next;
+	public int data;
+	public LNode(int k)
+	{
+		data = k;
+		next = null;
+	}
+	public String toString()
+	{
+		LNode cur = this;
+		String out = "";
+		while(cur != null)
+		{
+			out += cur.data + "->";
+			cur = cur.next;
+		}
+		
+		return out;
+	}
+}
+
+public class Solution {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		LNode mynode = new LNode(1);
+		mynode.next = new LNode(2);
+		mynode.next.next = new LNode(3);
+		mynode.next.next.next = new LNode(4);
+		mynode.next.next.next.next = mynode.next.next;
+		isCyclePresent(LNode node)
+		System.out.println(isCyclePresent(LNode node));
+		
+	}
+	public boolean isCyclePresent(LNode node)
+	{
+		if(node == null)
+			return false;
+		LNode slow = node;
+		LNode fast = node;
+		while(true)
+		{
+			if(slow == fast)
+				return true;
+			else
+			{
+				slow = slow.next;
+				if(fast.next!=null)
+				{
+					fast=fast.next;
+					if(fast.next!=null)
+						fast = fast.next;
+					else return false;
+				}
+				else
+					return false;
+			}
+			break;
+		}
+		
+		return false;
+	}
+
+}

@@ -1,0 +1,4 @@
+INDEX VERSION 1.126+/home/aashish/HackerRank/Searching/.metadata/.plugins/org.eclipse.jdt.core
+1873969840.index
+2635224394.index
+1556097803.index

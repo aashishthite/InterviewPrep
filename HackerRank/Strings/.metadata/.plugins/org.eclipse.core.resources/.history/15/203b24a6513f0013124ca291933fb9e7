@@ -1,0 +1,45 @@
+import java.io.*;
+import java.util.*;
+public class Solution {
+
+	/**
+	 * @param args
+	 * @throws FileNotFoundException  
+	 */
+	public static void main(String[] args) throws FileNotFoundException {
+		// TODO Auto-generated method stub
+		System.setIn(new FileInputStream("file1"));
+		Scanner stdin = new Scanner(System.in);
+		
+		String a = stdin.nextLine();
+		String b = stdin.nextLine();
+		//List<Character> charList = new ArrayList<Character>();
+		int count = 0;
+		Map<Character,Integer> set = new HashMap<Character,Integer>();
+		for(int ii = 0; ii < a.length(); ii++)
+		{
+			if(set.containsKey(a.charAt(ii)))
+			{
+				set.put(a.charAt(ii), set.get(a.charAt(ii))+1);
+			}
+			else
+				set.put(a.charAt(ii),1);
+		}
+		for(int ii = 0; ii < b.length(); ii++)
+		{
+			if(set.containsKey(b.charAt(ii)))
+			{
+				count++;
+				//charList.add(b.charAt(ii));
+				//System.out.print(b.charAt(ii));
+				int num = set.get(b.charAt(ii));
+				//if(num>1)
+				//	set.put(b.charAt(ii), set.get(b.charAt(ii))-1);
+				//else
+					set.remove(b.charAt(ii));
+			}
+		}
+		System.out.println(count);
+	}
+
+}

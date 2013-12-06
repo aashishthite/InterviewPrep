@@ -1,0 +1,50 @@
+class LNode{
+	public LNode next;
+	public int data;
+	public boolean isCyclePresent()
+	{
+		
+		return false;
+	}
+}
+
+public class Solution {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		
+	}
+	public boolean isCyclePresent(LNode node)
+	{
+		if(node == null)
+			return false;
+		LNode slow = node;
+		LNode fast = node;
+		while(true)
+		{
+			if(slow == fast)
+				return true;
+			else
+			{
+				slow = slow.next;
+				if(fast.next!=null)
+				{
+					fast=fast.next;
+					if(fast.next!=null)
+						fast = fast.next;
+					else return false;
+				}
+				else
+					return false;
+			}
+			break;
+		}
+		
+		return false;
+	}
+
+}

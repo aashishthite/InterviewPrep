@@ -1,0 +1,35 @@
+
+public class Solution {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int[] a = {1,3,6,8,-5,-2,3,8};
+		int start1 = 0;
+		int start2 = a.length/2;
+		int lastIndx = 0;
+		for(int ii = start2; ii < a.length; ii++)
+		{
+			for(int jj = start2 - 1; jj >=0; jj--)
+			{
+				if(a[ii] < a [jj])
+				{
+					//swap
+					int temp = a[jj];
+					a[jj] = a[ii];
+					a[ii] = temp;
+				}
+				else
+					break;
+			}
+		
+		}
+		for(int ii = 0; ii < a.length; ii++)
+		{
+			System.out.println(a[ii]);
+		}
+	}
+
+}

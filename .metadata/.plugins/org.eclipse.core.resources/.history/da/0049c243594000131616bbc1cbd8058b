@@ -1,0 +1,26 @@
+
+public class Solution {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		myatoi("-54");
+	}
+	public static void myatoi(String s){
+		char[] arr = s.toCharArray();
+		int num = 0, sign = 1;
+		if(arr[0] == '-')
+		{
+			sign = -1;
+		}
+		for(int ii = sign==1?0:1; ii< arr.length; ii++)
+		{
+			
+			num+=(int) ((arr[ii]-48)*Math.pow(10, arr.length-ii-(sign==1?0:1)));
+			
+		}
+		System.out.print(num*sign);
+	}
+}

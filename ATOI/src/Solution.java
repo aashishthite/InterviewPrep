@@ -1,0 +1,36 @@
+
+public class Solution {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		myatoi("   asf ");
+	}
+	public static void myatoi(String s){
+		if(s==null || s.trim().length()==0)
+		{
+			 throw new IllegalArgumentException("Number cannot be null/empty.");
+		}
+		s=s.trim();
+		char[] arr = s.toCharArray();
+		int num = 0, sign = 0;
+		if(arr[0] == '-')
+		{
+			sign = -1;
+		}
+		if(arr[0] == '+')
+		{
+			sign = 1;
+		}
+		for(int ii = sign==0?0:1; ii< arr.length; ii++)
+		{
+			if(arr[ii]>48+9)
+				throw new IllegalArgumentException("Not a number");
+			num+=(int) ((arr[ii]-48)*Math.pow(10, arr.length-ii-1));
+			
+		}
+		System.out.print(num*(sign==0?1:sign));
+	}
+}

@@ -1,0 +1,61 @@
+import java.util.*;
+class Point2D{
+	int x,y;
+	public Point2D(int a, int b)
+	{
+		x = a;
+		y = b;
+	}
+}
+class distcomp implements Comparator<Point2D>{
+
+	@Override
+	public int compare(Point2D o1, Point2D o2) {
+		// TODO Auto-generated method stub
+		double dist1 = o1.x * o1.x +o1.y * o1.y;
+		double dist2 = o2.x * o2.x +o2.y * o2.y;
+		return (int) (dist1 - dist2);
+		//return 0;
+	}
+
+	
+	
+}
+public class Solution {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		List<Point2D> myarr = new ArrayList<Point2D>();
+		myarr.add(new Point2D(1,1));
+		myarr.add(new Point2D(2,2));
+		myarr.add(new Point2D(3,3));
+		myarr.add(new Point2D(4,4));
+		myarr.add(new Point2D(5,5));
+		kClosest(myarr,2);
+	}
+	
+	public static void kClosest(List<Point2D> myarr, int k)
+	{
+		distcomp comp = new distcomp();
+		PriorityQueue<Point2D> pq = new PriorityQueue<Point2D>(k,comp);
+		for(int ii = 0; ii < Math.min(myarr.size(), k+1); ii++)
+		{
+			pq.offer(myarr.get(ii));
+		}
+		for(int ii = k; ii < myarr.size(); ii++)
+		{
+			pq.offer(myarr.get(ii));
+			pq.poll();
+		}
+		for(int ii = 0; ii < pq.size(); ii++)
+		{
+			Point2D temp = pq.poll();
+			System.out.println(temp.x+" "+ temp.y);
+		}
+	}
+	
+
+}
