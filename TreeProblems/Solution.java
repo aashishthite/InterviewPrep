@@ -37,12 +37,12 @@ public class Solution
 		//mirror(root);
 		//root.print(0);
 		//System.out.println(isBST(root));
-		List<TreeNode> out = printSpiral(root);//dfsIterative(root);
-		for(TreeNode t : out)
-			System.out.print(t.data + " ");
-		System.out.println();
+		//List<TreeNode> out = printSpiral(root);//dfsIterative(root);
+		//for(TreeNode t : out)
+		//	System.out.print(t.data + " ");
+		//System.out.println();
 		//dfs(root);
-		System.out.println();
+		System.out.println(depth(root));
 	}
 	public static void mirror(TreeNode root)
 	{
@@ -156,6 +156,12 @@ public class Solution
 
 		}
 		return out;
+	}
+	public static int depth(TreeNode root)
+	{
+		if(root == null)
+			return 0;
+		return 1+ Math.max(depth(root.left),depth(root.right));
 	}
 
 }
