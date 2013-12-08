@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 class TreeNode
 {
 	int data;
@@ -42,7 +43,8 @@ public class Solution
 		//	System.out.print(t.data + " ");
 		//System.out.println();
 		//dfs(root);
-		System.out.println(depth(root));
+		//System.out.println(depth(root));
+		serializeDeserialize(root).print(0);
 	}
 	public static void mirror(TreeNode root)
 	{
@@ -162,6 +164,69 @@ public class Solution
 		if(root == null)
 			return 0;
 		return 1+ Math.max(depth(root.left),depth(root.right));
+	}
+	public static TreeNode serializeDeserialize(TreeNode root)
+	{
+		try{
+		File file = new File("tree.txt");
+		if(!file.exists())
+			file.createNewFile();
+		
+		BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+		List<String> list = new ArrayList<String>();
+		preorder(root,list);
+		StringBuilder sb = new StringBuilder();
+		for(String s: list)
+		{
+			sb.append(s+"\n");
+		}
+		bw.write(sb.toString());
+		bw.close();
+		String curLine;
+		BufferedReader br = new BufferedReader(new FileReader("tree.txt"));
+		list = new ArrayList<String>();
+		while((curLine=br.readLine())!=null)
+			list.add(curLine.trim());
+		return createPreorder(list);
+
+		}
+		//TreeNode
+		//for(String s:list)
+		//{
+
+	//	}/
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public static void preorder(TreeNode root, List<String> list)
+	{
+		if(root==null)
+		{
+			list.add("#");
+		}
+		else
+		{
+			list.add(root.data+"");
+			preorder(root.left,list);
+			preorder(root.right,list);
+		}
+	}
+	public static TreeNode createPreorder(List<String> list)
+	{
+		if(list.get(0).equals("#"))
+		{
+			list.remove(0);
+			return null;
+		}
+
+		TreeNode root = new TreeNode(Integer.parseInt(list.get(0)));
+		list.remove(0);
+		root.left = createPreorder(list);
+		root.right = createPreorder(list);
+		return root;
 	}
 
 }
